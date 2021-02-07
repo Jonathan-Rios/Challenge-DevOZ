@@ -23,7 +23,9 @@
   "dependencies": {
     "dotenv": "^8.2.0",
     "koa": "^2.13.0",
-    "koa-router": "^9.4.0"
+    "koa-body": "^4.2.0",
+    "koa-router": "^9.4.0",
+    "uuidv4": "^6.2.6"
   },
   "devDependencies": {
     "chai": "^4.2.0",

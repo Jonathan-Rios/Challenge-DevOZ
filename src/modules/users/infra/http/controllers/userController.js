@@ -1,21 +1,42 @@
+const UsersRepository = require('../../repositories/UserRepository');
+
 const UsersController = {
-  index:  async (ctx) => {
-    // ctx.status = 200;
-    // ctx.body = {total:0, count: 0, rows:[]}
-    // return ctx;
-    console.log('list');
+  index: (ctx) => {
+    ctx.status = 200;
+    ctx.body = {
+      rows: UsersRepository.findAllUsers()
+    }
+
+    return ctx;
   },
 
-  create: () => {
-    console.log('created');
+  create: async (ctx) => {
+    const data = ctx.request.body;
+    const user = await UsersRepository.create(data);
+    
+    ctx.status = 201;
+    ctx.body = user;
+    
+    return ctx;
   },
 
-  update: () => {
-    console.log('updated');
+  update: async (ctx) => {
+    const data = ctx.request.body;
+    const user = await UsersRepository.update(data);
+    
+    ctx.status = 200;
+    ctx.body = user;
+    
+    return ctx;
   },
   
-  delete: () => {
-    console.log('deleted');
+  delete: async (ctx) => {
+    const data = ctx.request.params;
+    await UsersRepository.delete(data);
+
+    ctx.status = 204;
+
+    return ctx;
   }
 }
 
